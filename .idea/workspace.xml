@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="scrapDataWorldCupGC.py first version">
-      <change afterPath="$PROJECT_DIR$/data/worldCupGC/season2023_2024.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/TODO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/scrapDataWorldCupGC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="scrapDataWorldCupGC.py ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/TODO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scrapDataWorldCupGC.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapDataWorldCupGC.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,21 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Kshys13k"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Kshys13k&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Kshys13k/ski_jumping.git",
-    "accountId": "df5459d6-d075-4acd-afc8-d50c949e4af3"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Kshys13k/ski_jumping.git&quot;,
+    &quot;accountId&quot;: &quot;df5459d6-d075-4acd-afc8-d50c949e4af3&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2qw921pC4FnZEhedpU498BetGXL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -52,6 +50,7 @@
     "Python.scrapDataWorldCup.executor": "Run",
     "Python.scrapDataWorldCupGC.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/kshys13k/Desktop/Studia/rok2/R/ski_jumping",
     "node.js.detected.package.eslint": "true",
@@ -65,8 +64,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
-        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.180" />
+        <option value="bundled-python-sdk-85c76a3b01b3-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.180" />
       </set>
     </attachedChunks>
   </component>
@@ -79,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735562559441</updated>
       <workItem from="1735562560815" duration="3495000" />
+      <workItem from="1735567131618" duration="780000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -96,7 +96,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735566577277</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="scrapDataWorldCupGC.py ready">
+      <option name="closed" value="true" />
+      <created>1735567300859</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1735567300859</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,10 +113,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="scrapDataWorldCupGC.py first version" />
-    <option name="LAST_COMMIT_MESSAGE" value="scrapDataWorldCupGC.py first version" />
+    <MESSAGE value="scrapDataWorldCupGC.py ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="scrapDataWorldCupGC.py ready" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCup.coverage" NAME="scrapDataWorldCup Coverage Results" MODIFIED="1735565750032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCupGC.coverage" NAME="scrapDataWorldCupGC Coverage Results" MODIFIED="1735566553436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCupGC.coverage" NAME="scrapDataWorldCupGC Coverage Results" MODIFIED="1735567271308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>

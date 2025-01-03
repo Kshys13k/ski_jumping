@@ -80,7 +80,7 @@ def scrapSeason(startingYear):
         print(f"Error while retrieving the page. Response code: {response.status_code}")
 
 def main():
-    #1994 first world cup points to Adam Małysz
+    #1994/95 first world cup points to Adam Małysz
     for year in range(1994, 2025):
         scrapSeason(year)
 
