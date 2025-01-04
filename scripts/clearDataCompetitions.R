@@ -81,27 +81,113 @@ total_points_all_jumps <- row[11]
 # Exstract data from long_string
 library(stringr)
 
-pattern_code <- "(?<![A-Z])[A-Z]{3}(?![A-Z])"
-country_code <- str_extract(long_string, pattern_code)
+pattern <- "(?<![A-Z])[A-Z]{3}(?![A-Z])"
+country_code <- str_extract(long_string, pattern)
 
-pattern_code <- "[A-Z]{2,} [A-Z][a-z]+"
-name <- str_extract(long_string, pattern_code)
+pattern <- "[A-Z]{2,} [A-Z][a-z]+"
+name <- str_extract(long_string, pattern)
 
-pattern_code <- "\\d{1,2} [A-Z]{3} \\d{4}"
-date <- str_extract(long_string, pattern_code)
+pattern <- "\\d{1,2} [A-Z]{3} \\d{4}"
+date <- str_extract(long_string, pattern)
 
+#Remove from long_string information that is already found
 shorter_string <- str_remove(long_string, date)
 shorter_string <- str_remove(shorter_string, name)
 shorter_string <- str_remove(shorter_string, country_code)
 shorter_string <- str_squish(shorter_string)
 
-cat("String po usunięciu znalezionych elementów:\n", shorter_string, "\n")
+pattern <- "(?<!\\d)\\d{1,2}(?!\\d)"
+starting_number <- str_extract(shorter_string, pattern)
 
-pattern_code <- "(?<!\\d)\\d{1,2}(?!\\d)"
-starting_number <- str_extract(shorter_string, pattern_code)
+# Split data for every jump
+speed_array <- str_split(speed, pattern = "\r", simplify = TRUE)
+distance_array <- str_split(distance, pattern = "\r", simplify = TRUE)
+distance_points_array  <- str_split(distance_points, pattern = "\r", simplify = TRUE)
+judges_marks_array  <- str_split(judges_marks, pattern = "\r", simplify = TRUE)
+style_points_array  <- str_split(style_points, pattern = "\r", simplify = TRUE)
+gate_array  <- str_split(gate, pattern = "\r", simplify = TRUE)
+wind_array  <-str_split(wind , pattern = "\r", simplify = TRUE)
+total_points_array  <- str_split(total_points, pattern = "\r", simplify = TRUE)
+rank_array  <- str_split(rank, pattern = "\r", simplify = TRUE)
 
-cat("Znaleziony trójznakowy kod:", country_code, "\n")
-cat("Znaleziony łańcuch:", name, "\n")
-cat("Znaleziono datę:", date, "\n\n")
-cat("Znaleziono numer:", starting_number, "\n\n")
 
+#name, country, birthday, starting_number, speed, distance,
+#distance_points, mark_A, mark_B, mark_C, mark_D, mark_E, 
+#style_points, gate, gate_points, wind_speed, wind_points,
+#total_points, rank, total_points_all_jumps
+
+df <- data.frame(
+  name = character(), 
+  country = character(), 
+  birthday = character(), 
+  starting_number = character(), 
+  speed = character(), 
+  distance = character(),
+  distance_points = character(), 
+  mark_A = character(), 
+  mark_B = character(), 
+  mark_C = character(), 
+  mark_D = character(), 
+  mark_E = character(), 
+  style_points = character(), 
+  gate = character(), 
+  gate_points = character(), 
+  wind_speed = character(), 
+  wind_points = character(),
+  total_points = character(), 
+  rank = character(), 
+  series_number = integer(),
+  total_points_all_jumps = character()
+)
+
+
+for (i in 1:length(speed_array)){
+  
+  # extract data about judges marks and wind
+  marks <- str_extract_all(judges_marks_array[i], ".{1,4}")[[1]]
+  markA <- marks[1]
+  markB <- marks[2]
+  markC <- marks[3]
+  markD <- marks[4]
+  markE <- marks[5]
+  
+  pattern <- ".+\\.\\d+"
+  wind_speed <- str_extract(wind_array[i], pattern)
+  wind_points <- str_remove(wind_array[i], pattern)
+  
+  #gate
+  gate_n  <- substr(gate_array[i], 1, 2)
+  gate_points <- substr(gate_array[i], 3, nchar(gate_array[i]))
+  
+  #name, country, birthday, starting_number, speed, distance, distance_points, mark_A, mark_B, mark_C, mark_D, mark_E, style_points, gate, gate_points, wind_speed, wind_points, total_points, rank, series_number, total_points_all_jumps
+  series <- c(name, country_code, date, starting_number, speed_array[i], distance_array[i], distance_points_array[i], markA, markB, markC, markD, markE, style_points_array[i], gate_n, gate_points, wind_speed, wind_points, total_points_array[i], rank_array[i], i, total_points_all_jumps)
+  new_row <- as.data.frame(as.list(series), stringsAsFactors = FALSE)
+  df <- rbind(df, new_row)
+}
+
+df
+
+#TEST
+i <- 1
+# extract data about judges marks and wind
+marks <- str_extract_all(judges_marks_array[i], ".{1,4}")[[1]]
+markA <- marks[1]
+markB <- marks[2]
+markC <- marks[3]
+markD <- marks[4]
+markE <- marks[5]
+
+pattern <- ".+\\.\\d+" #ERROR
+wind_speed <- str_extract(wind_array[i], pattern)
+wind_points <- str_remove(wind_array[i], pattern)
+
+#gate
+gate_n  <- substr(gate_array[i], 1, 2)
+gate_points <- substr(gate_array[i], 3, nchar(gate_array[i]))
+
+#name, country, birthday, starting_number, speed, distance, distance_points, mark_A, mark_B, mark_C, mark_D, mark_E, style_points, gate, gate_points, wind_speed, wind_points, total_points, rank, series_number, total_points_all_jumps
+series <- c(name, country_code, date, starting_number, speed_array[i], distance_array[i], distance_points_array[i], markA, markB, markC, markD, markE, style_points_array[i], gate_n, gate_points, wind_speed, wind_points, total_points_array[i], rank_array[i], i, total_points_all_jumps)
+new_row <- as.data.frame(as.list(series), stringsAsFactors = FALSE)
+df <- rbind(df, new_row)
+
+df
