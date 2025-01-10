@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="clearDataCompetitions.R - almost ready&#10;TO DEBUG: wind and gate points" />
+    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="clearDataCompetitions.R - clearing given pdf and saving it to one csv" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +78,7 @@
       <workItem from="1735911426481" duration="266000" />
       <workItem from="1736017323956" duration="40000" />
       <workItem from="1736440481415" duration="37000" />
+      <workItem from="1736518749397" duration="82000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -127,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736440508753</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="clearDataCompetitions.R - clearing given pdf and saving it to one csv">
+      <option name="closed" value="true" />
+      <created>1736518793235</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736518793235</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,7 +149,8 @@
     <MESSAGE value="gathered all data, started writing clearDataCompetitions.R" />
     <MESSAGE value="clearDataCompetitions.R - almost finished" />
     <MESSAGE value="clearDataCompetitions.R - almost ready&#10;TO DEBUG: wind and gate points" />
-    <option name="LAST_COMMIT_MESSAGE" value="clearDataCompetitions.R - almost ready&#10;TO DEBUG: wind and gate points" />
+    <MESSAGE value="clearDataCompetitions.R - clearing given pdf and saving it to one csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="clearDataCompetitions.R - clearing given pdf and saving it to one csv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCup.coverage" NAME="scrapDataWorldCup Coverage Results" MODIFIED="1735565750032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
