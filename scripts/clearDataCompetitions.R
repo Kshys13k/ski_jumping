@@ -24,8 +24,8 @@ getwd()
 library(readr)
 
 df1 <- read_csv(
- "../data/competitions/tabula-wis24_1.csv",
- # "../data/competitions/tabula-gap23.csv",
+  "../data/competitions/tabula-wis24_1.csv",
+  #"../data/competitions/tabula-gap23.csv",
   col_names = FALSE,             
   locale = locale(encoding = "UTF-8"),  
   progress = FALSE                
@@ -158,7 +158,7 @@ for(j in 1:nrow(df3)){
     markD <- marks[4]
     markE <- marks[5]
     
-    pattern <- ".+\\.\\d+" #ERROR
+    pattern <- "^.+\\.\\d{2}" #ERROR
     wind_speed <- str_extract(wind_array[i], pattern)
     wind_points <- str_remove(wind_array[i], pattern)
     
@@ -182,3 +182,19 @@ for(j in 1:nrow(df3)){
 }
 
 df
+
+#Covert df columns to strings so write.csv will work
+df_converted <- data.frame(
+  lapply(df, function(col) {
+    if (is.list(col)) {
+      sapply(col, toString)
+    } else {
+      as.character(col)
+    }
+  }),
+  stringsAsFactors = FALSE
+)
+
+
+
+write.csv(df_converted, file = "../data/cleanDataCompetitions/test.csv", row.names = TRUE)
