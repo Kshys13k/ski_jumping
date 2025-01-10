@@ -1,7 +1,7 @@
-#This script clears all csv files from "data/competitions/" and saves it into '/data/competitionsCleaned/".
+#This script clears all csv files from "data/competitions/" and saves it into '/data/cleanDataCompetitions.csv'.
 #CSVs in "data/competitions/" have to have format: "tabula-[HILL_CODE][YEAR]_[NUMBER_OF_COMETITION].csv",
 #for example: "tabula-wis24_1.csv", "tabula-gap23.csv".
-#It is possible to generate new csv files:
+#It is possible to add more competitions:
 #1. Downoload pdf with official results from fis website:
 # https://www.fis-ski.com/DB/ski-jumping/calendar-results.html?noselection=true&mi=menu-calendar
 #2. Use Tabula software to generate csv from pdf.
@@ -226,4 +226,4 @@ df_converted <- data.frame(
 
 
 
-write.csv(df_converted, file = "../data/cleanDataCompetitions/test.csv", row.names = TRUE)
+write.csv(df_converted, file = "../data/cleanDataCompetitions.csv", row.names = TRUE)
