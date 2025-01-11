@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="clearDataCompetitions.R">
-      <change beforePath="$PROJECT_DIR$/data/cleanDataCompetitions/test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleanDataCompetitions/wis24_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/competitions/tabula-lah22_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/competitions/tabula-pla22_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/competitions/tabula-ruk24_2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/competitions/tabula-vik23_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/clearDataCompetitions.R" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/clearDataCompetitions.R" afterDir="false" />
+    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="clearDataCompetitions.R READY!!!">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +81,7 @@
       <workItem from="1736017323956" duration="40000" />
       <workItem from="1736440481415" duration="37000" />
       <workItem from="1736518749397" duration="82000" />
-      <workItem from="1736522121842" duration="611000" />
+      <workItem from="1736522121842" duration="1407000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -153,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736522130854</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="clearDataCompetitions.R READY!!!">
+      <option name="closed" value="true" />
+      <created>1736524616072</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736524616072</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +170,8 @@
     <MESSAGE value="clearDataCompetitions.R - almost ready&#10;TO DEBUG: wind and gate points" />
     <MESSAGE value="clearDataCompetitions.R - clearing given pdf and saving it to one csv" />
     <MESSAGE value="clearDataCompetitions.R" />
-    <option name="LAST_COMMIT_MESSAGE" value="clearDataCompetitions.R" />
+    <MESSAGE value="clearDataCompetitions.R READY!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="clearDataCompetitions.R READY!!!" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCup.coverage" NAME="scrapDataWorldCup Coverage Results" MODIFIED="1735565750032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
