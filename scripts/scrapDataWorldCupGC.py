@@ -84,5 +84,6 @@ def main():
     for year in range(1994, 2025):
         scrapSeason(year)
 
+
 if __name__ == "__main__":
     main()
