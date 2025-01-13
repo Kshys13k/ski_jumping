@@ -36,28 +36,33 @@ df <- read_csv(
   progress = FALSE                
 )
 
-#Prepare data for ploting
-df_sorted <- df %>%
-  group_by(YearCode) %>%
-  arrange(-Points) %>%  
-  mutate(Competitor = factor(Competitor, levels = Competitor)) %>%  
-  ungroup()
+# Messing with factors (I have no idea what am I doing (but it works))
+df_sorted <- df_sorted %>%
+  arrange(Points)
+df_sorted$Competitor <- factor(df_sorted$Competitor, levels = unique(df_sorted$Competitor))
+
+df_sorted <- df_sorted %>%
+  arrange(YearCode)
+df_sorted$Year <- factor(df_sorted$Year, levels = unique(df_sorted$Year))
 
 #Plot
-ggplot(df_sorted, aes(
-  x = factor(YearCode),
+plot <- ggplot(df_sorted, aes(
+  x = factor(Year),
   y = Points,
-  fill = fct_inorder(Competitor)  
+  fill = Competitor 
 )) +
-  geom_bar(stat = "identity", position = "stack") +
+  geom_col() +
   scale_fill_manual(values = competitor_colors) +  
   labs(
-    title = "Punkty zawodników w różnych latach",
-    x = "Rok",
-    y = "Punkty",
+    title = "Punkty polskich skoczków w Pucharze Świata w latach 1994-2025",
+    x = "Sezon",
+    y = "Liczba punktów",
     fill = "Zawodnik"
   ) +
-  theme_minimal()
+  theme_minimal()+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1) 
+  )
 
-
+ggsave(filename = "../plots/plot1GC.jpg", plot = plot, width = 10, height = 6, dpi = 300)
 
