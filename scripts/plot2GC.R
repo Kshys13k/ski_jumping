@@ -3,6 +3,7 @@ library(ggplot2)
 library(readr)
 library(dplyr)
 library(forcats)
+library(tidyr)
 
 competitor_colors <- c(
   "Adam Małysz" = "#FB0038", "Wojciech Skupień" = "#0DFB16", "Marek Gwóźdź" = "#005355",
@@ -36,12 +37,13 @@ df <- read_csv(
   progress = FALSE                
 )
 
-# Messing with factors (I have no idea what am I doing (but it works))
-df_sorted <- df %>%
-  arrange(Points)
-df_sorted$Competitor <- factor(df_sorted$Competitor, levels = unique(df_sorted$Competitor))
+# Modify data so missing values for Competitors in some Years will become 0's
+df_complete <- df_sorted %>%
+  complete(Year, Competitor, fill = list(Points = 0))
 
-df_sorted <- df_sorted %>%
+
+# Messing with factors
+df_sorted <- df_complete %>%
   arrange(YearCode)
 df_sorted$Year <- factor(df_sorted$Year, levels = unique(df_sorted$Year))
 
@@ -49,20 +51,22 @@ df_sorted$Year <- factor(df_sorted$Year, levels = unique(df_sorted$Year))
 plot <- ggplot(df_sorted, aes(
   x = factor(Year),
   y = Points,
-  fill = Competitor 
+  colour = Competitor,
+  group = Competitor
 )) +
-  geom_col() +
-  scale_fill_manual(values = competitor_colors) +  
+  geom_line(size=1) +
+  scale_colour_manual(values = competitor_colors) +
+  theme_minimal() +
   labs(
     title = "Punkty polskich skoczków w Pucharze Świata w latach 1994-2025",
     x = "Sezon",
-    y = "Liczba punktów",
-    fill = "Zawodnik"
+    y = "Liczba punktów"
   ) +
-  theme_minimal()+
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1) 
   )
 
-ggsave(filename = "../plots/plot1GC.jpg", plot = plot, width = 10, height = 6, dpi = 300)
+
+
+ggsave(filename = "../plots/plot2GC.jpg", plot = plot, width = 10, height = 6, dpi = 300)
 
