@@ -230,7 +230,16 @@ df_converted <- data.frame(
 )
 
 
-#DODAJ punkt k i hs
+#Add columns for k and hs
+df_hills <- read_csv(
+  "../data/hills.csv",
+  col_names = TRUE,             
+  locale = locale(encoding = "UTF-8"),  
+  progress = FALSE                
+)
+
+hill_codes <- df_converted$hill_code
+df <- inner_join(df_converted, df_hills, by= "hill_code")
 
 
-write.csv(df_converted, file = "../data/cleanDataCompetitions.csv", row.names = TRUE)
+write.csv(df, file = "../data/cleanDataCompetitions.csv", row.names = TRUE)
