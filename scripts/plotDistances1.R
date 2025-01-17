@@ -19,26 +19,32 @@ df <- read_csv(
   locale = locale(encoding = "UTF-8"),  
   progress = FALSE                
 )
-
+df <- df %>% 
+  mutate(Skocznia = hill_code)
 
 #Order on X-axis
 inter=interaction(df$competition_number, df$hill_code, df$year)
 
 #Plot
-ggplot(df, aes(
+plot <- ggplot(df, aes(
   x=inter,
   y=as.numeric(distance),
-  fill=hill_code
+  fill=Skocznia
 ))+
   geom_boxplot() +
   theme_minimal() +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1) 
+    axis.text.x = element_text(angle = 90, hjust = 1) 
+  )+
+  labs(
+    title = "Rozkłady długości skoków w wybranych konkursach Pucharu Świata w sezonach 2022/23 - 2024/25",
+    subtitle = "(Grupowanie latami)",
+    x = "Konkurs (numer, skocznia, sezon)",
+    y = "Długość skoku (m)",
+    color = "Skocznia"
   )
 
 
-#test
-df_test <- df %>% 
-  filter(hill_code=="lil")
+ggsave(filename = "../plots/plotDistances1.jpg", plot = plot, width = 10, height = 6, dpi = 300)
 
 
