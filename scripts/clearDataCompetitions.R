@@ -12,6 +12,8 @@
 library(rstudioapi)
 library(stringr)
 library(readr)
+library(dplyr)
+library(tidyr)
 
 #Set script path as working directory
 current_script_path <- rstudioapi::getActiveDocumentContext()$path
@@ -210,11 +212,14 @@ for(k in 1:length(files)){
   
 }
 
-df
+#Remove NA
+df_clean <- df %>% 
+  drop_na(name, distance) %>% 
+  filter(!(name == "NA"))
 
 #Covert df columns to strings so write.csv will work
 df_converted <- data.frame(
-  lapply(df, function(col) {
+  lapply(df_clean, function(col) {
     if (is.list(col)) {
       sapply(col, toString)
     } else {
@@ -224,6 +229,8 @@ df_converted <- data.frame(
   stringsAsFactors = FALSE
 )
 
+
+#DODAJ punkt k i hs
 
 
 write.csv(df_converted, file = "../data/cleanDataCompetitions.csv", row.names = TRUE)

@@ -20,13 +20,25 @@ df <- read_csv(
   progress = FALSE                
 )
 
+
+#Order on X-axis
+inter=interaction(df$competition_number, df$hill_code, df$year)
+
+#Plot
 ggplot(df, aes(
-  x=interaction(factor(competition_code), year, hill_code, competition_number),
-  y=as.numeric(distance)
+  x=inter,
+  y=as.numeric(distance),
+  fill=hill_code
 ))+
   geom_boxplot() +
   theme_minimal() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1) 
   )
+
+
+#test
+df_test <- df %>% 
+  filter(hill_code=="lil")
+
 
