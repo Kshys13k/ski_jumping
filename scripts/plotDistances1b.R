@@ -20,7 +20,7 @@ df <- read_csv(
   progress = FALSE                
 )
 df <- df %>% 
-  mutate(Skocznia = hill_code)
+  mutate(Skocznia = full_name)
 
 #Order on X-axis
 inter=interaction(df$competition_number, df$year, df$hill_code)
@@ -38,8 +38,8 @@ plot <- ggplot(df, aes(
   )+
   labs(
     title = "Rozkłady długości skoków w wybranych konkursach Pucharu Świata w sezonach 2022/23 - 2024/25",
-    subtitle = "(Grupowanie sezonami)",
-    x = "Konkurs (numer, skocznia, sezon)",
+    subtitle = "(Grupowanie skoczniami)",
+    x = "Konkurs (numer, sezon, skocznia)",
     y = "Długość skoku (m)",
     color = "Skocznia"
   )

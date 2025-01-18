@@ -22,7 +22,7 @@ df <- read_csv(
 
 #Prepare data for plot
 df <- df %>% 
-  mutate(Skocznia = hill_code) %>% 
+  mutate(Skocznia = full_name) %>% 
   filter(series_number==1) %>% 
   mutate(hill_class = ifelse(k>=200, "fly", "lar"))
 
@@ -57,7 +57,7 @@ plot <- ggplot(df, aes(
   )+
   labs(
     title = "Normalizowane długości skoków w wybranych konkursach Pucharu Świata w sezonach 2022/23 - 2024/25",
-    subtitle = "Pierwsze serie konkursowe, (grupowanie skoczniami), 0 - punkt K, 1 - HS",
+    subtitle = "Pierwsze serie konkursowe, (grupowanie skoczniami), \n 0 - punkt K, 1 - HS",
     x = "Konkurs (numer, sezon, skocznia)",
     y = "Długość skoku",
     color = "Typ skoczni",

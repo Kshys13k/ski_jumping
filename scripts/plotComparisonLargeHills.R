@@ -20,7 +20,7 @@ df <- read_csv(
   progress = FALSE                
 )
 df <- df %>% 
-  mutate(Skocznia = hill_code)
+  mutate(Skocznia = full_name)
 
 #Filter data for plot
 df <- df %>% 
