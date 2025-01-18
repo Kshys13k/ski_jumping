@@ -65,6 +65,6 @@ plot <- ggplot(df, aes(
   )
 
 
-ggsave(filename = "../plots/plotNorDist1.jpg", plot = plot, width = 10, height = 6, dpi = 300)
+ggsave(filename = "../plots/plotNormalizedHills.jpg", plot = plot, width = 10, height = 6, dpi = 300)
 
 

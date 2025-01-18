@@ -25,7 +25,7 @@ df <- df %>%
   filter(hill_code == "lah" & year == "2023" & competition_number == "1")
 
 #Plot
-plot <- ggplot(df, aes(x=as.numeric(distance)))+
+plot<-ggplot(df, aes(x=as.numeric(distance)))+
 geom_histogram(bins = 7, fill = "skyblue", color = "black")+
  theme_minimal() +
   labs(
