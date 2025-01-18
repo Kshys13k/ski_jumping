@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="all plots without normalisation" />
+    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="normalization done,&#10;first normalized plot - beta" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,6 +86,7 @@
       <workItem from="1736794135415" duration="21000" />
       <workItem from="1737122001325" duration="1250000" />
       <workItem from="1737141420710" duration="41000" />
+      <workItem from="1737144692341" duration="36000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -207,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737141444061</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="normalization done,&#10;first normalized plot - beta">
+      <option name="closed" value="true" />
+      <created>1737144715491</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1737144715491</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +237,8 @@
     <MESSAGE value="koniec_zajęć" />
     <MESSAGE value="clearDataCompetitions.R - remove NA&#10;new plot ready - plotNDistances1.R" />
     <MESSAGE value="all plots without normalisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="all plots without normalisation" />
+    <MESSAGE value="normalization done,&#10;first normalized plot - beta" />
+    <option name="LAST_COMMIT_MESSAGE" value="normalization done,&#10;first normalized plot - beta" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCup.coverage" NAME="scrapDataWorldCup Coverage Results" MODIFIED="1735565750032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />

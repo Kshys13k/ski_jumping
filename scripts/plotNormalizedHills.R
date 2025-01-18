@@ -19,9 +19,12 @@ df <- read_csv(
   locale = locale(encoding = "UTF-8"),  
   progress = FALSE                
 )
+
+#Prepare data for plot
 df <- df %>% 
   mutate(Skocznia = hill_code) %>% 
-  filter(series_number==1)
+  filter(series_number==1) %>% 
+  mutate(hill_class = ifelse(k>=200, "fly", "lar"))
 
 #Normalization
 df <- df %>% 
@@ -31,22 +34,34 @@ df <- df %>%
 inter=interaction(df$competition_number, df$year, df$hill_code)
 
 #Plot
-ggplot(df, aes(
+plot <- ggplot(df, aes(
   x=inter,
   y=as.numeric(distance_N),
-  fill=Skocznia
+  fill=Skocznia,
+  color = hill_class
 ))+
+  geom_hline(aes(yintercept = 0, color = "K"), size = 1, color = "blue", show.legend = TRUE) +
+  geom_hline(aes(yintercept = 1, color = "HS"), size = 1, color = "#BF0000", show.legend = TRUE) +
+  scale_linetype_manual(
+    values = c("K" = "solid", "HS" = "dashed"),  
+    labels = c("K" = "K - Punkt Konstrukcyjny", "HS" = "HS - Rozmiar Skoczni")
+  ) +
   geom_boxplot() +
+  scale_color_manual(
+    values = c("lar" = "black", "fly" = "red"),
+    labels = c("lar" = "Skocznia Duża", "fly" = "Skocznia Mamucia")
+  )+
   theme_minimal() +
   theme(
     axis.text.x = element_text(angle = 90, hjust = 1) 
   )+
   labs(
     title = "Normalizowane długości skoków w wybranych konkursach Pucharu Świata w sezonach 2022/23 - 2024/25",
-    subtitle = "W pierwszych seriach, (grupowanie skoczniami)",
-    x = "Konkurs (numer, skocznia, sezon)",
-    y = "Długość skoku (m)",
-    color = "Skocznia"
+    subtitle = "Pierwsze serie konkursowe, (grupowanie skoczniami), 0 - punkt K, 1 - HS",
+    x = "Konkurs (numer, sezon, skocznia)",
+    y = "Długość skoku",
+    color = "Typ skoczni",
+    linetype = "Parametry skoczni"
   )
 
 
