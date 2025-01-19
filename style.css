@@ -1,0 +1,106 @@
+/* Ogólne ustawienia */
+body {
+  font-family: 'Arial', sans-serif; /* Czytelna i popularna czcionka */
+  background-color: #f8f9fa; /* Bardzo jasny szary jako tło */
+  color: #333333; /* Przyjemny ciemnoszary tekst */
+  line-height: 1.6; /* Poprawia czytelność */
+  margin: 0;
+  padding: 0 20px;
+}
+
+/* Nagłówki */
+h1, h2, h3, h4 {
+  color: #000000; /* Głęboka czerń dla nagłówków */
+  font-weight: bold; /* Pogrubione nagłówki */
+}
+
+h2 {
+  border-bottom: 2px solid #dddddd; /* Subtelna linia pod nagłówkami poziomu 2 */
+  padding-bottom: 5px;
+}
+
+h4 {
+  font-size: 1.2em; /* Zmniejszony rozmiar dla h4 */
+  text-transform: uppercase; /* Wielkie litery */
+}
+
+/* Tabele */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th, table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+table th {
+  background-color: #d9ecf2; /* Jasnoniebieski nagłówek tabeli */
+  color: #333333; /* Ciemnoszary tekst */
+}
+
+/* Legenda i elementy pomocnicze */
+legend {
+  background-color: #d9ecf2; /* Jasnoniebieskie tło dla legendy */
+  color: #333333; /* Ciemnoszary tekst */
+  padding: 10px;
+  border-radius: 5px; /* Lekko zaokrąglone rogi */
+  font-weight: bold;
+}
+
+/* Linki */
+a {
+  color: #0056b3; /* Niebieski link */
+  text-decoration: none; /* Usunięcie podkreślenia */
+}
+
+a:hover {
+  text-decoration: underline; /* Podkreślenie po najechaniu */
+}
+
+/* Kod */
+code {
+  background-color: #e9ecef; /* Jasnoszare tło dla kodu */
+  color: #d63384; /* Akcent różowy dla kodu */
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Listy */
+ul, ol {
+  margin: 0;
+  padding-left: 20px; /* Odstęp dla list */
+}
+
+/* Wyrównanie bloków cytatów */
+blockquote {
+  background-color: #f1f3f5; /* Jasnoszare tło */
+  border-left: 4px solid #d9ecf2; /* Jasnoniebieska linia */
+  margin: 10px 0;
+  padding: 10px 20px;
+  color: #555555;
+}
+
+/* Dostosowanie formularzy */
+input, select, textarea {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Przycisk */
+button {
+  background-color: #007bff; /* Niebieski */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3; /* Ciemniejszy niebieski */
+}

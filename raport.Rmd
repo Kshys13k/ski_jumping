@@ -2,14 +2,19 @@
 title: "Skoki narciarskie - analizy z wykorzystaniem R - raport końcowy"
 author: "Krzysiek Terlecki"
 date: "2025-01-19"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    css: "style.css"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## O projekcie
+## <b>O projekcie</b>
 Ten projekt składa się z dwóch części: 1. Historyczne wyniki polskiej reprezentacji w Pucharze Świata, 2. Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata. 
 
 Pierwsza część skupia się na historycznej analizie wyników polskiej reprezentacji w skokach narciarskich w Pucharze Świata w latach 1994-2025. Obejmuje więc zarówno "Erę Małysza" jak i lata późniejsze, aż do teraźniejszości. 
@@ -17,7 +22,7 @@ Pierwsza część skupia się na historycznej analizie wyników polskiej repreze
 W drugiej częśći projektu staram się pokazać <b>potencjał drzemiący w stworzonym przeze mnie zbiorze danych, zawierającym szczegółowe informacje o przeszło 2 i pół tysiącach skoków narciarskich.</b> Analizowane są głównie długości skoków w różnych zawodach Pucharu Świata na przestrzeni kilku sezonów. Na końcu tej części staram się odpowiedzieć na pytanie: "jak daleko należy skoczyć w konkursie aby zająć 1 (lub inne) miejsce?".
 <br><br><br>
 
-## Część 1: Historyczne wyniki polskiej reprezentacji w Pucharze Świata
+## <b>Część 1</b>: Historyczne wyniki polskiej reprezentacji w Pucharze Świata
 <br>
 
 #### Wstęp
@@ -60,7 +65,9 @@ Ciekawą zależnością jest też to, że często po zmianie trenera kadra zaczy
 
 Na tym wykresie czytelnie widać historyczne rezultaty poszczególnych skoczków. Na jego podstawie można spróbować rozstrzygnąć odwieczny spór i zaryzykować stwierdzenie, że jeśli chodzi o występy w PŚ to kariera Adama Małysza była bardziej okazała niż Kamila Stocha. Oczywiście nie uwzględniamy tutaj innych sukcesów skoczka z Zębu takich jak złota igrzysk olimpijskich - czegoś, czym Małysz nie może się pochwalić. Pamiętajmy też, że Stoch nie powiedział jeszcze ostatniego słowa ;\)
 
-## Część 2: Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata
+<br><br><br><br><br>
+
+## <b>Część 2</b>: Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata
 <br>
 
 #### Wstęp
@@ -99,6 +106,30 @@ Budowę skoczni przedstawia poniższa grafika z <a href="https://en.wikipedia.or
 ![Obraz 1](plots/hill.png)
 <br><br><br>
 
+#### Parametry skoczni omawianych w tym raporcie
+
+```{r ch1, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(rstudioapi)
+library(ggplot2)
+library(readr)
+library(dplyr)
+
+df_hills <- read_csv(
+  "data/hills.csv",
+  col_names = TRUE,             
+  locale = locale(encoding = "UTF-8"),  
+  progress = FALSE                
+)
+colnames(df_hills) <- c("Kod skoczni", "Punkt K", "HS", "Nazwa")
+```
+
+```{r ch3}
+kable(df_hills)
+```
+
+<br><br><br>
+
 #### Czy skoki w konkursie mają rozkład normalny?
 Przed dalszą analizą konieczne jest zapoznanie się z rozkładem długości skoków w konkursach PŚ.
 
@@ -108,11 +139,10 @@ Oto histogram przedstawiający rozkład skoków w ramach przykładowego konkursu
 ![Wykres 4](plots/histogram.jpg )
 <br>
 
-```{r ch2}
-library(rstudioapi)
-library(ggplot2)
-library(readr)
-library(dplyr)
+Sprawdzimy teraz czy rozkład ten jest normalny:
+<br>
+
+```{r ch4, echo=FALSE, message=FALSE, warning=FALSE}
 
 #Set script path as working directory
 current_script_path <- rstudioapi::getActiveDocumentContext()$path
@@ -120,8 +150,6 @@ current_script_path <- rstudioapi::getActiveDocumentContext()$path
 current_script_dir <- dirname(current_script_path)
 
 setwd(current_script_dir)
-
-getwd()
 
 #Read file
 df <- read_csv(
@@ -135,45 +163,160 @@ df <- read_csv(
 df <- df %>% 
   filter(hill_code == "lah" & year == "2023" & competition_number == "1")
 
-print(shapiro.test(df$distance))
+shapiro_result <- shapiro.test(df$distance)
 ```
 
+```{r ch5, echo= TRUE}
+shapiro_result
+```
+<br>
+
+Więc rozkład jest normalny.
+<br><br><br>
+
+#### Porównanie rozkładów długości skoków w wybranych konkursach Pucharu Świata
 ![Wykres 5](plots/plotDistances1.jpg)
 ![Wykres 6](plots/plotDistances1b.jpg)
+<br>
+
+Na wykresach widać kilka ciekawych zależności. Po pierwsze widać, że rozkład zależy od tego na jakiej skoczni odbywają się zawody. Szczególnie widoczna jest różnica między zawodami na skoczniach dużych i mamucich.
+
+W obrębie tych samych skoczni jednak również występuje zróżnicowanie. Wpływają zapewne na to warunki atmosferyczne, w kontekście których rozgrywane były poszczególne konkursy jak i to, jak zachowawczo jury ustawiło belkę.
+<br><br><br>
+
+#### Porównanie rozkładów długości skoków na skoczniach dużych
 ![Wykres 7](plots/plotComparisonLargeHills.jpg )
+<br>
+Wykres prenentuje rozkłady długości wszystkich skoków na danym obiekcie. Skocznie posortowane są zgodnie z rosnącą średnią długością skoku.
+
+Widać różnicę w charakterystykach skoczni. Co może zaskakiwać, największa skocznia duża - Willingen choć pozwala na najdalsze skoki wcale nie przoduje ani w średnich, ani w medianach. 
+<br><br><br>
+
+#### Porównanie rozkładów długości skoków na skoczniach mamucich
 ![Wykres 8](plots/plotComparisonSkiFlyingHills.jpg)
+<br>
+Obie porównywane skocznie mamucie mają taki sam punkt K - 200 metrów i HS - 240 metrów. Widać różnicę w charakterystyce skoczni. Loty w Vikersund mają szerszy rozkład- są bardziej zróżnicowane pod kątem uzyskiwanych odległości.
+
+Różnica ta zapewne wynika z profili obu skoczni: w Planicy leci się wyżej nad zeskokiem, aż doleci się w okolicę punktu K, gdzie skocznia wypłaszcza się i "zbiera" zawodników. Natomiast w Vikersund profil skoczni został dobrany tak, że leci się bardzo nisko nad zeskokiem, przez co częstsze są lądowania tuż za bulą i krótkie skoki.
+
+Widać to w słynnym filmie <a href="https://www.youtube.com/watch?v=DFbDL-S5lMQ">"wysoki" lot Piotrka Żyły</a> prezentującym próbę tego zawodnika właśnie na mamucie w Vikersund.
+<br><br><br>
+
+
+#### Porównanie rozkładów długości skoku w konkursach na tych samych obiektach
+
 ![Wykres 9](plots/plotWis.jpg)
 ![Wykres 10](plots/plotEng.jpg)
 ![Wykres 11](plots/plotRuk.jpg)
+<br><br><br>
+
+#### Znormalizowane długości skoków narciarskich
+
+Czy różnicę w rozkładach między obiektami wynikają tylko z ich wielkości (rozumianej jako zarówno umiejscowienie punktu K, jak i HS)? Czy może od czegoś jeszcze?
+
+Między innymi po to, żeby odpowiedzieć na to pytanie postanowiłem znormalizować długości skoków tak, aby móc je porównywać niezależnie od skoczni na jakiej miały miejsce. Wykorzystałem do tego właśnie parametry skoczni. A więc znormalizowany skok ma wartość 0, gdy był równy punktowi K i 1, gdy skoczek wylądował dokładnie w punkcie HS.
+
+Tak prezentuje się wykres dla tak znormalizowanych rozkładów skoków z pierwszych serii konkursowych:
+<br>
+
 ![Wykres 12](plots/plotNormalizedHills.jpg)
+<br>
+
+Widać, że dalej występują różnice między obiektamim choć są one mniejsze (szczególnie w wypadku skoczni o różnym typie - mamucie vs duże).
+
+Widać też, że znacznie większy wpływ mają inne czynniki jak warunki atmosferyczne (widać to dobrze w przypadku Zakopanego).
+<br><br><br>
+
+#### Czy istnieje uniwersalna receptura? Jak daleko należy skoczyć aby wygrać zawody (lub zająć n-te miejsce)?
+
+Znormalizowane długości skoków wykorzystałem, aby odpowiedzieć na powyższe pytanie. Najpierw jednak zaprezentuję rozkład wszystkich znormalizowanych długości skoków:
+<br>
+
 ![Wykres 13](plots/histogramWC.jpg )
+<br>
 
+Za pomocą kwantyli wyznaczyłem jak daleko w normalizowanej skali (a także w przeliczeniu na kilka wybranych skoczni) trzeba skoczyć, żeby zająć n-te miejsce w zawodach (a dokładniej mówiąc w pierwszej serii konkursowej).
+<br>
 
+```{r ch6, echo=FALSE, message=FALSE, warning=FALSE}
+#Read file
+df <- read_csv(
+  "data/cleanDataCompetitions.csv",
+  col_names = TRUE,             
+  locale = locale(encoding = "UTF-8"),  
+  progress = FALSE                
+)
 
-## Potencjał drzemiący w stworzonym datasecie; możliwe inne analizy
+#Prepare data for plot
+df <- df %>% 
+  mutate(Skocznia = hill_code) %>% 
+  filter(series_number==1)
+
+#Normalization
+df <- df %>% 
+  mutate(distance_N = (distance-k)/(hs-k))
+
+#Calculate distance needed for each place
+places <- quantile(df$distance_N, probs = seq(0, 1, length.out = 51))
+places <- places[-c(1, length(places))]
+vector <- 49:1
+
+df <- data.frame(
+  place = vector,        
+  distance_N = places  
+)
+
+#Load data about hills
+df_hills <- read_csv(
+  "data/hills.csv",
+  col_names = TRUE,             
+  locale = locale(encoding = "UTF-8"),  
+  progress = FALSE                
+)
+
+#Make table with disctances and predicted place
+lah_k = df_hills$k[df_hills$hill_code == "lah"]
+lah_hs = df_hills$hs[df_hills$hill_code == "lah"]
+ruk_k = df_hills$k[df_hills$hill_code == "ruk"]
+ruk_hs = df_hills$hs[df_hills$hill_code == "ruk"]
+vik_k = df_hills$k[df_hills$hill_code == "vik"]
+vik_hs = df_hills$hs[df_hills$hill_code == "vik"]
+wis_k = df_hills$k[df_hills$hill_code == "wis"]
+wis_hs = df_hills$hs[df_hills$hill_code == "wis"]
+zak_k = df_hills$k[df_hills$hill_code == "zak"]
+zak_hs = df_hills$hs[df_hills$hill_code == "zak"]
+
+df_table_distance_and_place <- df %>% 
+  mutate(lah = (distance_N * (lah_hs-lah_k))+lah_k) %>% 
+  mutate(ruk = (distance_N * (ruk_hs-ruk_k))+ruk_k) %>% 
+  mutate(vik = (distance_N * (vik_hs-vik_k))+vik_k) %>% 
+  mutate(wis = (distance_N * (wis_hs-wis_k))+wis_k) %>% 
+  mutate(zak = (distance_N * (zak_hs-zak_k))+zak_k) 
+
+rownames(df_table_distance_and_place) <- NULL
+
+colnames(df_table_distance_and_place) <- c("Miejsce", "Dystans Normalizowany", "Lahti", "Ruka", "Vikersund", "Wisła", "Zakopane")
+```
+```{r ch7}
+kable(df_table_distance_and_place)
+```
+<br>
+
+Co ciekawe, otrzymane wyniki pokrywają się mniej więcej z histogramem długości skoków w Lahti z początku tej części raportu.
+<br><br><br>
+
+## <b>Potencjał drzemiący w stworzonym zbiorze danych; możliwe inne analizy</b>
+
+Powyższa analiza długości skoków nie odpowiada na wiele pytań. Jedno z tych, które się nasuwa to to, jak warunki wietrzne wpływają na analizowane rozkłady długości skoków w zawodach PŚ i czy na przykład nie jest tak, że silny wiatr powoduje, że występuje więcej outliersów? 
+
+Stowrzony przeze mnie dataset pozwala odpowiedzieć na tego typu pytania, ale wykracza to już poza tę analizę.
+
+Na koniec zaprezentuję tylko jeden wykres uwględniający zmienne: punkty za wiatr i noty za styl. Prezentuje on wyniki pierwszej serii jednego z konkursów w Lahti.
+<br>
+
 ![Wykres 14](plots/multiDimPlot.jpg )
-## Linki
+<br>
 
+## <b>Linki</b>
 
-
-
-
-
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Tutaj dam link do omawianego data setu jak go w końcu wrzucę na kaggle. Pozdrawiam i życzę miłej kawusi wszystkim czytającym ;\)
