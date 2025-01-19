@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## <b>O projekcie</b>
-Ten projekt składa się z dwóch części: 1. Historyczne wyniki polskiej reprezentacji w Pucharze Świata, 2. Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata. 
+Ten projekt składa się z dwóch części: 1. Historyczne wyniki polskiej reprezentacji w Pucharze Świata, 2. Jak daleko trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata. 
 
 Pierwsza część skupia się na historycznej analizie wyników polskiej reprezentacji w skokach narciarskich w Pucharze Świata w latach 1994-2025. Obejmuje więc zarówno "Erę Małysza" jak i lata późniejsze, aż do teraźniejszości. 
 
@@ -67,7 +67,7 @@ Na tym wykresie czytelnie widać historyczne rezultaty poszczególnych skoczków
 
 <br><br><br><br><br>
 
-## <b>Część 2</b>: Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata
+## <b>Część 2</b>: Jak daleko trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata
 <br>
 
 #### Wstęp
