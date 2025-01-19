@@ -1,0 +1,179 @@
+---
+title: "Skoki narciarskie - analizy z wykorzystaniem R - raport końcowy"
+author: "Krzysiek Terlecki"
+date: "2025-01-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## O projekcie
+Ten projekt składa się z dwóch części: 1. Historyczne wyniki polskiej reprezentacji w Pucharze Świata, 2. Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata. 
+
+Pierwsza część skupia się na historycznej analizie wyników polskiej reprezentacji w skokach narciarskich w Pucharze Świata w latach 1994-2025. Obejmuje więc zarówno "Erę Małysza" jak i lata późniejsze, aż do teraźniejszości. 
+
+W drugiej częśći projektu staram się pokazać <b>potencjał drzemiący w stworzonym przeze mnie zbiorze danych, zawierającym szczegółowe informacje o przeszło 2 i pół tysiącach skoków narciarskich.</b> Analizowane są głównie długości skoków w różnych zawodach Pucharu Świata na przestrzeni kilku sezonów. Na końcu tej części staram się odpowiedzieć na pytanie: "jak daleko należy skoczyć w konkursie aby zająć 1 (lub inne) miejsce?".
+<br><br><br>
+
+## Część 1: Historyczne wyniki polskiej reprezentacji w Pucharze Świata
+<br>
+
+#### Wstęp
+Ostatnimi czasy wśród kibiców polskiej reprezentacji w skokach narciarskich panuje pesymizm i nostalgia do czasów nieodwracalnie minionych. Osobiście zawsze jestem zwolennikiem merytorycznej krytyki i prób znalezienia optymalniejszych rozwiązań. Nie jestem w stanie jednak zrozumieć hejtu, który wylewa się obecnie na sportowców, którzy całe swoje życia poświęcają tej dyscyplinie i robią co mogą, aby osiągnąć jak nalepsze wyniki.
+
+Wiele opinii kibiców nie jest podparta żadnymi analizami, dlatego postanowiłem zająć się tym tematem i odpowiedzieć na pytanie - "Czy z polskimi skokami faktycznie jest aż tak źle?"
+
+W tym celu zescrapowałem ze strony <a href="https://www.skokinarciarskie.pl/">skokinarciarskie.pl</a> zarówno historyryczne klasyfikacje generalne Pucharu Świata poczynając od 1994 roku, jak i klasyfikację obecnie trwającego cyklu.
+
+Analizując poniższe wykresy warto pamiętać o tym, że obecnie liczba konkursów wchodzących w skład Pucharu Świata zwiększyła się w stosunku do tego, co było dawniej. W związku z tym zwiększyła się też pula punktów do zdobycia. Z drugiej jednak strony pojawiają się liczne głosy, że poziom PŚ stale rośnie, a więc punkty są coraz trudniejsze do zdobycia. Moja analiza nie uwzględnia tych czynników.
+<br><br><br>
+
+#### Porównanie Ery Małysza i Ery Stocha
+![Wykres 1](plots/plot1GC.jpg )
+<br>
+
+Na wykresie wyraźnie widać wybuch formy Adama Małysza w sezonie 2000/01, który zapoczątkował Małyszomanię.
+
+Widać też, że "Złotą Erą" polskich skoków był okres 2016-2023 i że obecnie faktycznie jest gorzej niż w tych latach, lecz wcale nie najgorzej w kontekście całego rozważanego okresu.
+
+(Należy pamiętać, że sezon 2024/2025 wciąż trwa i liczba zdobytych w nim punktów jeszcze wzrośnie).
+<br><br><br>
+
+#### Trenerzy kadry a wyniki
+![Wykres 2](plots/plot1GC_coaches.jpg  )
+<br>
+
+Na wykresie, począwszy od sezonu 1999/2000 zaznaczyłem pierwszych trenerów kadry A w danych okresach.
+
+Widać jak przejęcie kadry przez Tajnera zbiegło się z przełomem w wynikach Adama Małysza. Widać również progres wielu polskich skoczków po przejęciu kadry przez Horngachera.
+
+Ciekawą zależnością jest też to, że często po zmianie trenera kadra zaczyna osiągać lepsze wyniki. Jest tak w sezonach: 99/00, 04/05, 16/17, 22/23. Widzę dwa prawdopodobne wyjaśnienia tego zjawiska: 1. Nowo zatrudniony trener wprowadza nowe metody treningowe i "powiew świeżości" przez co skoczkowie zaczynają lepiej skakać 2. Trenera zwalnia się po wyjątkowo nieudanym sezonie. Oczywiście możliwe jest też to, że ta zależność jest dziełem przypadku.
+<br><br><br>
+
+#### Punkty Pucharu Świata zdobywane przez polskich skoczków
+<br>
+
+![Wykres 3](plots/plot2GC.jpg )
+<br>
+
+Na tym wykresie czytelnie widać historyczne rezultaty poszczególnych skoczków. Na jego podstawie można spróbować rozstrzygnąć odwieczny spór i zaryzykować stwierdzenie, że jeśli chodzi o występy w PŚ to kariera Adama Małysza była bardziej okazała niż Kamila Stocha. Oczywiście nie uwzględniamy tutaj innych sukcesów skoczka z Zębu takich jak złota igrzysk olimpijskich - czegoś, czym Małysz nie może się pochwalić. Pamiętajmy też, że Stoch nie powiedział jeszcze ostatniego słowa ;\)
+
+## Część 2: Jak dalego trzeba skoczyć aby wygrać zawody? - czyli analiza długości skoków w zawodach Pucharu Świata
+<br>
+
+#### Wstęp
+
+Druga część projektu bazuje na autorskim zbiorze danych, o którym opowiem więcej za chwilę. Przedmiotem analizy są długości skoków w konkursach Pucharu Świata. Zacznę od wytłumaczenia o co chodzi w skokach narciarskich, a na końcu postaram się odpowiedzieć na pytanie: "jak daleko należy skoczyć w konkursie aby zająć 1 (lub inne) miejsce?".
+
+Skoki narciarskie to piękny sport, który generuje wiele konkretnych danych. Dane te są jednak dość trudno dostępne - w internecie brakuje zbiorów danych gotowych do prowadzenia analiz. Danych w bardzo mało przystępnej formie (np. pdfy z raportami z zawodów) trzeba szukać na stronach takich jak oficjana strona  <a href="https://www.fis-ski.com/">fisu</a>.
+
+Prawdopodobnie z tego powodu brakuje ciekwaych analiz dotyczących tej tematyki. Z ciekawych rzeczy, które udało mi się znaleźć to ta analiza Alexandra Levakova:  <a href="https://rstudio-pubs-static.s3.amazonaws.com/153728_02db88490f314b8db409a2ce25551b82.html">analiza 1</a>. I ten zbiór danych: <a href="https://www.kaggle.com/datasets/wrotki8778/ski-jumping-results-database-2009now?select=all_results.csv">kaggle</a>. 
+
+Żadna z tych rzeczy nie dostaczyła jednak odpowiedzi na dręczące mnie pytania, więc musiałem przeprowadzić własną analizę.
+<br><br><br>
+
+#### Dane
+
+W związku z brakiem interesujących mnie danych w łatwo dostępnej formie <b>stworzyłem własne rozwiązanie do ich pozyskania.</b> Za pomocą darmowego narzędzia Tabula przekonwertowałem fisowskie raporty z zawodów indywidualnych do plików csv. Następnie <b>napisałem w R skrypt do czyszczenia tak otrzymanych danych.</b> W ten sposób powstał prawdopodobnie <b>największy i najkompletniejszy zbiór danych zawierających informacje o skokach jaki jest dostępny w sieci</b>.
+
+Obecnie zbiór danych zawiera informacje o skokach z 44 konkursów Pucharu Świata z 12 skoczni, które odbyły się w ciągu 3 sezonów.
+
+O każdym z ponad 2 i pół tysiąca skoków dostępna jest pełna informacja w tym: imię zawodnika, odległość, noty (od każdego sędziego i sumarycznie), informacje o wietrze i belce i wiele, wiele więcej.
+
+Zbiór łatwo można poszerzyć o kolejne rekordy za pomocą gotowych narzędzi: Tabula i przygotowanego przeze mnie skryptu R.
+<br><br><br>
+
+#### Jak zbudowana jest skocznia narciarska?
+
+Przejdźmy do metirum. Skoki narciarskie to dyscyplina sportowa, w której należy skoczyć na nartach jak najdalej. Oprócz odległości otrzymuje się punkty za styl, oraz rekompensatę za wiatr. Zazwyczaj konkurs indywidualny skoków narciarskich w ramach Pucharu Świata składa się z dwóch serii. W pierwszej skacze 50 zawodników, w drugiej 30 najlepszych z pierwszej serii. Ostateczna nota jest sumą punktów z obu skoków.
+
+Skocznia narciarska, na której rozgrywaja się zawody składa się z rozbiegu, miejsca wybicia i zeskoku- strefy lądowania.
+
+Strefa lądowania ma dwa najważniejsze parametry - punkt K, względem którego liczy się punkty za odległość i HS - rozmiar skoczni, za którym zeskok gwałtownie się wypłaszcza i dalsze skoki są uznawane za niebezpieczne.
+
+Budowę skoczni przedstawia poniższa grafika z <a href="https://en.wikipedia.org/wiki/Ski_jumping_hill">wikipedii</a>.
+<br>
+
+![Obraz 1](plots/hill.png)
+<br><br><br>
+
+#### Czy skoki w konkursie mają rozkład normalny?
+Przed dalszą analizą konieczne jest zapoznanie się z rozkładem długości skoków w konkursach PŚ.
+
+Oto histogram przedstawiający rozkład skoków w ramach przykładowego konkursu PŚ (z obu serii konkursowych):
+<br>
+
+![Wykres 4](plots/histogram.jpg )
+<br>
+
+```{r ch2}
+library(rstudioapi)
+library(ggplot2)
+library(readr)
+library(dplyr)
+
+#Set script path as working directory
+current_script_path <- rstudioapi::getActiveDocumentContext()$path
+
+current_script_dir <- dirname(current_script_path)
+
+setwd(current_script_dir)
+
+getwd()
+
+#Read file
+df <- read_csv(
+  "data/cleanDataCompetitions.csv",
+  col_names = TRUE,             
+  locale = locale(encoding = "UTF-8"),  
+  progress = FALSE                
+)
+
+#Filter data
+df <- df %>% 
+  filter(hill_code == "lah" & year == "2023" & competition_number == "1")
+
+print(shapiro.test(df$distance))
+```
+
+![Wykres 5](plots/plotDistances1.jpg)
+![Wykres 6](plots/plotDistances1b.jpg)
+![Wykres 7](plots/plotComparisonLargeHills.jpg )
+![Wykres 8](plots/plotComparisonSkiFlyingHills.jpg)
+![Wykres 9](plots/plotWis.jpg)
+![Wykres 10](plots/plotEng.jpg)
+![Wykres 11](plots/plotRuk.jpg)
+![Wykres 12](plots/plotNormalizedHills.jpg)
+![Wykres 13](plots/histogramWC.jpg )
+
+
+
+## Potencjał drzemiący w stworzonym datasecie; możliwe inne analizy
+![Wykres 14](plots/multiDimPlot.jpg )
+## Linki
+
+
+
+
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

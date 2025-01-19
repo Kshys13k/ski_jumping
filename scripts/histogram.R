@@ -33,9 +33,6 @@ geom_histogram(bins = 7, fill = "skyblue", color = "black")+
     x = "Długość skoku",
     y = "Liczba skoków"
   )
-  
-shapiro.test(df$distance)
-
 
 ggsave(filename = "../plots/histogram.jpg", plot = plot, width = 10, height = 6, dpi = 300)
 
