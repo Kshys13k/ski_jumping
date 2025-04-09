@@ -24,7 +24,7 @@ df <- read_csv(
 df <- df %>% 
   mutate(Skocznia = hill_code) %>% 
   filter(series_number==1)  %>% 
-  filter(hs <= 200)
+  filter(hs > 200)
 
 #Normalization
 df <- df %>% 
@@ -43,12 +43,12 @@ plot <- ggplot(df, aes(x=as.numeric(distance_N)))+
   theme_minimal() +
   labs(
     title = "Rozkład długości normalizowanych skoków w konkursach Pucharu Świata",
-    subtitle = "(Tylko pierwsze serie, z wyłączeniem skoczni mamucich)",
+    subtitle = "(Tylko pierwsze serie, tylko skocznie mamucie)",
     x = "Długość skoku",
     y = "Liczba skoków",
     color = "Parametry Skoczni"
   )
 
-ggsave(filename = "../plots/histogramWC.jpg", plot = plot, width = 10, height = 6, dpi = 300)
+ggsave(filename = "../plots/histogramWC_flying.jpg", plot = plot, width = 10, height = 6, dpi = 300)
 
 

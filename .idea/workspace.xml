@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="im done" />
+    <list default="true" id="5bfa2660-cc64-4f0a-a27c-4e63ff3a9e3b" name="Changes" comment="literówki">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +93,8 @@
       <workItem from="1737239546728" duration="28000" />
       <workItem from="1737241016873" duration="30000" />
       <workItem from="1737321792203" duration="27000" />
+      <workItem from="1737324230374" duration="24000" />
+      <workItem from="1744192339684" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -252,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737321806854</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="literówki">
+      <option name="closed" value="true" />
+      <created>1737324245203</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1737324245203</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +290,8 @@
     <MESSAGE value="all plots and analysis ready" />
     <MESSAGE value="little fixes" />
     <MESSAGE value="im done" />
-    <option name="LAST_COMMIT_MESSAGE" value="im done" />
+    <MESSAGE value="literówki" />
+    <option name="LAST_COMMIT_MESSAGE" value="literówki" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ski_jumping$scrapDataWorldCup.coverage" NAME="scrapDataWorldCup Coverage Results" MODIFIED="1735565750032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
