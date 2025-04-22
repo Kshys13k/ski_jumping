@@ -36,7 +36,9 @@ Analizując poniższe wykresy warto pamiętać o tym, że obecnie liczba konkurs
 <br><br><br>
 
 #### Porównanie Ery Małysza i Ery Stocha
-![Wykres 1](plots/plot1GC.jpg )
+```{r plot1, echo=FALSE, results='asis'}
+htmltools::includeHTML("plots/plot1GC.html")
+```
 <br>
 
 Na wykresie wyraźnie widać wybuch formy Adama Małysza w sezonie 2000/01, który zapoczątkował Małyszomanię.

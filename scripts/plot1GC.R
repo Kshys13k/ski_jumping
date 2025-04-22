@@ -3,6 +3,9 @@ library(ggplot2)
 library(readr)
 library(dplyr)
 library(forcats)
+library(plotly)
+library(htmlwidgets)
+
 
 competitor_colors <- c(
   "Adam Małysz" = "#FB0038", "Wojciech Skupień" = "#0DFB16", "Marek Gwóźdź" = "#005355",
@@ -64,5 +67,9 @@ plot <- ggplot(df_sorted, aes(
     axis.text.x = element_text(angle = 45, hjust = 1) 
   )
 
-ggsave(filename = "../plots/plot1GC.jpg", plot = plot, width = 10, height = 6, dpi = 300)
+#ggsave(filename = "../plots/plot1GC.jpg", plot = plot, width = 10, height = 6, dpi = 300)
+
+interactive_plot<-ggplotly(plot)
+saveWidget(interactive_plot, file = "../plots/plot1GC.html", selfcontained = TRUE)
+
 
